@@ -6,226 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ludo Game</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: rgb(32, 34, 56);
-            font-family: Arial, sans-serif;
-        }
-        .game-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .ludo {
-            width: 750px;
-            height: 750px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            background-color: white;
-            position: relative;
-        }
-
-        .blue, .red, .yellow, .green {
-            width: 300px;
-            height: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /*******color***************/
-        .blue {
-            background-color: royalblue;
-        }
-        .red {
-            background-color: red;
-        }
-        .yellow {
-            background-color: yellow;
-        }
-        .green {
-            background-color: green;
-        }
-
-        /**************box inside*****************/
-        .box {
-            background-color: white;
-            width: 200px;
-            height: 200px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        .box .insidebox {
-            width: 60px;
-            height: 60px;
-            margin: 20px;
-            border-radius: 50%;
-            position: relative;
-        }
-
-        /***********color***************/
-        .blueFont {
-            color: royalblue;
-        }
-        .redFont {
-            color: red;
-        }
-        .yellowFont {
-            color: yellow;
-        }
-        .greenFont {
-            color: green;
-        }
-
-        .blueBackground {
-            background-color: royalblue;
-        }
-        .redBackground {
-            background-color: red;
-        }
-        .yellowBackground {
-            background-color: yellow;
-        }
-        .greenBackground {
-            background-color: green;
-        }
-
-        /***********square box****************/
-        .square {
-            width: 48px;
-            height: 48px;
-            border: 1px solid black;
-            font-size: 30px;
-            text-align: center;
-            position: relative;
-        }
-        .squareContainer {
-            display: flex;
-        }
-        .row {
-            width: 750px;
-            height: 150px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .row1 {
-            display: flex;
-        }
-
-        /******************ludoCenter***************/
-        .ludoCenter {
-            font-size: 100px;
-            color: #ffd700;
-            position: absolute;
-            background-color: rgb(32, 34, 56);
-            width: 150px;
-            height: 150px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-        }
-
-        /* Game pieces */
-        .piece {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            position: absolute;
-            z-index: 5;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-        }
-        .piece.blue {
-            background-color: royalblue;
-        }
-        .piece.red {
-            background-color: red;
-        }
-        .piece.yellow {
-            background-color: yellow;
-        }
-        .piece.green {
-            background-color: green;
-        }
-        .piece.selected {
-            box-shadow: 0 0 10px 3px white;
-            transform: scale(1.2);
-        }
-
-        /* Dice and controls */
-        .controls {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-        .dice-container {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        .dice {
-            width: 60px;
-            height: 60px;
-            background-color: white;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
-        .roll-button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-        .roll-button:hover {
-            background-color: #45a049;
-        }
-        .roll-button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-        .player-turn {
-            color: white;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        /* Game info */
-        .game-info {
-            color: white;
-            margin-top: 20px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="game-container">
@@ -244,12 +25,12 @@
             <!-- Top path -->
             <div class="squareContainer">
                 <div class="left">
-                    <div class="square" data-index="0"></div>
-                    <div class="square" data-index="1"></div>
-                    <div class="square fa-regular fa-star" data-index="2"></div>
-                    <div class="square" data-index="3"></div>
-                    <div class="square" data-index="4"></div>
                     <div class="square" data-index="5"></div>
+                    <div class="square" data-index="4"></div>
+                    <div class="square fa-regular fa-star" data-index="3"></div>
+                    <div class="square" data-index="2"></div>
+                    <div class="square" data-index="1"></div>
+                    <div class="square" data-index="0"></div>
                 </div>
                 <div class="middle">
                     <div class="square fa-solid fa-arrow-down redFont" data-index="6"></div>
@@ -283,55 +64,55 @@
             <div class="row">
                 <div class="Rowleft">
                     <div class="row1">
-                        <div class="square" data-index="51"></div>
-                        <div class="square blueBackground" data-index="50"></div>
-                        <div class="square" data-index="49"></div>
-                        <div class="square" data-index="48"></div>
-                        <div class="square" data-index="47"></div>
-                        <div class="square" data-index="46"></div>
+                        <div class="square" data-index="66"></div>
+                        <div class="square blueBackground" data-index="67"></div>
+                        <div class="square" data-index="68"></div>
+                        <div class="square" data-index="69"></div>
+                        <div class="square" data-index="70"></div>
+                        <div class="square" data-index="71"></div>
                     </div>
                     <div class="row1">
-                        <div class="square fa-solid fa-arrow-right blueFont" data-index="52"></div>
-                        <div class="square blueBackground" data-index="53"></div>
-                        <div class="square blueBackground" data-index="54"></div>
-                        <div class="square blueBackground" data-index="55"></div>
-                        <div class="square blueBackground" data-index="56"></div>
-                        <div class="square blueBackground" data-index="57"></div>
+                        <div class="square fa-solid fa-arrow-right blueFont" data-index="60"></div>
+                        <div class="square blueBackground" data-index="61"></div>
+                        <div class="square blueBackground" data-index="62"></div>
+                        <div class="square blueBackground" data-index="63"></div>
+                        <div class="square blueBackground" data-index="64"></div>
+                        <div class="square blueBackground" data-index="65"></div>
                     </div>
                     <div class="row1">
-                        <div class="square" data-index="45"></div>
-                        <div class="square" data-index="44"></div>
-                        <div class="square fa-regular fa-star" data-index="43"></div>
-                        <div class="square" data-index="42"></div>
-                        <div class="square" data-index="41"></div>
-                        <div class="square" data-index="40"></div>
+                        <div class="square" data-index="59"></div>
+                        <div class="square" data-index="58"></div>
+                        <div class="square fa-regular fa-star" data-index="57"></div>
+                        <div class="square" data-index="56"></div>
+                        <div class="square" data-index="55"></div>
+                        <div class="square" data-index="54"></div>
                     </div>
                 </div>
                 
                 <div class="rowright">
                     <div class="row1">
+                        <div class="square" data-index="18"></div>
+                        <div class="square" data-index="19"></div>
+                        <div class="square" data-index="20"></div>
+                        <div class="square fa-regular fa-star" data-index="21"></div>
+                        <div class="square" data-index="22"></div>
                         <div class="square" data-index="23"></div>
-                        <div class="square" data-index="24"></div>
-                        <div class="square" data-index="25"></div>
-                        <div class="square fa-regular fa-star" data-index="26"></div>
-                        <div class="square" data-index="27"></div>
-                        <div class="square" data-index="28"></div>
                     </div>
                     <div class="row1">
-                        <div class="square greenBackground" data-index="22"></div>
-                        <div class="square greenBackground" data-index="21"></div>
-                        <div class="square greenBackground" data-index="20"></div>
-                        <div class="square greenBackground" data-index="19"></div>
-                        <div class="square greenBackground" data-index="18"></div>
-                        <div class="square fa-solid fa-arrow-left greenFont" data-index="29"></div>
+                        <div class="square greenBackground" data-index="29"></div>
+                        <div class="square greenBackground" data-index="28"></div>
+                        <div class="square greenBackground" data-index="27"></div>
+                        <div class="square greenBackground" data-index="26"></div>
+                        <div class="square greenBackground" data-index="25"></div>
+                        <div class="square fa-solid fa-arrow-left greenFont" data-index="24"></div>
                     </div>
                     <div class="row1">
-                        <div class="square" data-index="34"></div>
                         <div class="square" data-index="35"></div>
-                        <div class="square" data-index="36"></div>
-                        <div class="square" data-index="37"></div>
-                        <div class="square greenBackground" data-index="38"></div>
-                        <div class="square" data-index="39"></div>
+                        <div class="square" data-index="34"></div>
+                        <div class="square" data-index="33"></div>
+                        <div class="square" data-index="32"></div>
+                        <div class="square greenBackground" data-index="31"></div>
+                        <div class="square" data-index="30"></div>
                     </div>
                 </div>
             </div>
@@ -349,28 +130,28 @@
             <!-- Bottom path -->
             <div class="squareContainer">
                 <div class="left">
-                    <div class="square" data-index="33"></div>
-                    <div class="square" data-index="32"></div>
-                    <div class="square" data-index="31"></div>
-                    <div class="square" data-index="30"></div>
-                    <div class="square yellowBackground" data-index="58"></div>
-                    <div class="square" data-index="59"></div>
+                    <div class="square" data-index="53"></div>
+                    <div class="square" data-index="52"></div>
+                    <div class="square" data-index="51"></div>
+                    <div class="square" data-index="50"></div>
+                    <div class="square yellowBackground" data-index="49"></div>
+                    <div class="square" data-index="48"></div>
                 </div>
                 <div class="middle">
-                    <div class="square yellowBackground" data-index="65"></div>
-                    <div class="square yellowBackground" data-index="64"></div>
-                    <div class="square yellowBackground" data-index="63"></div>
-                    <div class="square yellowBackground" data-index="62"></div>
-                    <div class="square yellowBackground" data-index="61"></div>
-                    <div class="square fa-solid fa-arrow-up yellowFont" data-index="60"></div>
+                    <div class="square yellowBackground" data-index="47"></div>
+                    <div class="square yellowBackground" data-index="46"></div>
+                    <div class="square yellowBackground" data-index="45"></div>
+                    <div class="square yellowBackground" data-index="44"></div>
+                    <div class="square yellowBackground" data-index="43"></div>
+                    <div class="square fa-solid fa-arrow-up yellowFont" data-index="42"></div>
                 </div>
                 <div class="right">
-                    <div class="square" data-index="68"></div>
-                    <div class="square" data-index="67"></div>
-                    <div class="square" data-index="66"></div>
-                    <div class="square fa-regular fa-star" data-index="69"></div>
-                    <div class="square" data-index="70"></div>
-                    <div class="square" data-index="71"></div>
+                    <div class="square" data-index="36"></div>
+                    <div class="square" data-index="37"></div>
+                    <div class="square" data-index="38"></div>
+                    <div class="square fa-regular fa-star" data-index="39"></div>
+                    <div class="square" data-index="40"></div>
+                    <div class="square" data-index="41"></div>
                 </div>
             </div>
 
@@ -416,540 +197,6 @@
         </div>
     </div>
 
-    <script>
-		// Networking config
-		const API_BASE = 'http://localhost:4000';
-		let roomId = null;
-		let player = { color: null, token: null, name: null };
-		let ws = null;
-		let wsUrl = null;
-		// Track which colors are active (have seated players)
-		let activeColors = new Set(['blue','red','yellow','green']); // default single-device play
-
-        // Game state
-        const gameState = {
-            currentPlayer: 0, // 0: Blue, 1: Red, 2: Yellow, 3: Green
-            diceValue: 0,
-            pieces: {
-                blue: Array(4).fill().map((_, i) => ({ id: i, position: -1, isHome: true, isFinished: false })),
-                red: Array(4).fill().map((_, i) => ({ id: i, position: -1, isHome: true, isFinished: false })),
-                yellow: Array(4).fill().map((_, i) => ({ id: i, position: -1, isHome: true, isFinished: false })),
-                green: Array(4).fill().map((_, i) => ({ id: i, position: -1, isHome: true, isFinished: false }))
-            },
-            selectedPiece: null,
-            hasRolled: false
-        };
-
-        // Player colors and positions
-        const players = ['blue', 'red', 'yellow', 'green'];
-        const playerNames = ['Blue', 'Red', 'Yellow', 'Green'];
-		const startPositions = { blue: 0, red: 13, yellow: 26, green: 39 };
-		// Entry points on the ring (0..51): square just BEFORE each color's start square
-		const homeEntryRing = {
-			blue: (startPositions.blue + 51) % 52,   // 51
-			red: (startPositions.red + 51) % 52,     // 12
-			yellow: (startPositions.yellow + 51) % 52, // 25
-			green: (startPositions.green + 51) % 52  // 38
-		};
-		// Visual ring order mapped to data-index values in this HTML (clockwise starting at 0)
-		const ringPath = [
-			0,1,2,3,4,5,6,12,13,14,15,16,17,
-			23,24,25,26,27,28,29,
-			34,35,36,37,38,39,
-			71,70,69,68,67,66,
-			60,59,58,30,31,32,33,
-			45,44,43,42,41,40,
-			51,52,50,49,48,47,46
-		];
-		// Actual home paths moving toward center (visual inward strips)
-		const homePaths = {
-			blue: [53, 54, 55, 56, 57],
-			red: [7, 8, 9, 10, 11],
-			yellow: [61, 62, 63, 64, 65],
-			green: [22, 21, 20, 19, 18]
-		};
-
-        // DOM elements
-        const diceElement = document.getElementById('dice');
-        const rollButton = document.getElementById('roll-button');
-        const playerTurnElement = document.getElementById('player-turn');
-        const gameInfoElement = document.getElementById('game-info');
-		const netStatusEl = document.getElementById('net-status');
-		const roomInputEl = document.getElementById('room-id-input');
-		const nameInputEl = document.getElementById('player-name');
-		const createRoomBtn = document.getElementById('create-room-btn');
-		const joinRoomBtn = document.getElementById('join-room-btn');
-		const takeSeatBtn = document.getElementById('take-seat-btn');
-		const seatSelectEl = document.getElementById('seat-color');
-
-        // Initialize the game
-        function initGame() {
-            createPieces();
-            updateUI();
-            
-            rollButton.addEventListener('click', rollDice);
-
-			// Networking handlers
-			createRoomBtn.addEventListener('click', createRoom);
-			joinRoomBtn.addEventListener('click', joinRoom);
-			takeSeatBtn.addEventListener('click', takeSeat);
-			updateNetStatus('Offline');
-        }
-
-		function getCurrentColor() {
-			return players[gameState.currentPlayer];
-		}
-
-        // Create game pieces
-        function createPieces() {
-            players.forEach(color => {
-                const homeElement = document.getElementById(`${color}-home`);
-                const insideBoxes = homeElement.querySelectorAll('.insidebox');
-                
-                gameState.pieces[color].forEach((piece, index) => {
-                    const pieceElement = document.createElement('div');
-                    pieceElement.className = `piece ${color}`;
-                    pieceElement.dataset.color = color;
-                    pieceElement.dataset.id = index;
-                    
-                    // Position piece in home
-                    const box = insideBoxes[index];
-                    const rect = box.getBoundingClientRect();
-                    const boardRect = document.querySelector('.ludo').getBoundingClientRect();
-                    
-                    pieceElement.style.left = `${rect.left - boardRect.left + 15}px`;
-                    pieceElement.style.top = `${rect.top - boardRect.top + 15}px`;
-                    
-                    pieceElement.addEventListener('click', () => selectPiece(color, index));
-                    
-                    document.querySelector('.ludo').appendChild(pieceElement);
-                });
-            });
-        }
-
-        // Roll the dice
-        function rollDice() {
-            if (gameState.hasRolled) return;
-
-			// If connected: only the current player's seated client can roll
-			if (player.color && players[gameState.currentPlayer] !== player.color) return;
-
-            gameState.diceValue = Math.floor(Math.random() * 6) + 1;
-            diceElement.textContent = gameState.diceValue;
-            gameState.hasRolled = true;
-            
-            // Check if player can move any piece
-            const currentColor = players[gameState.currentPlayer];
-            const canMove = gameState.pieces[currentColor].some(piece => 
-                canPieceMove(currentColor, piece.id)
-            );
-            
-            if (!canMove) {
-                gameInfoElement.textContent = "No valid moves. Next player's turn.";
-				setTimeout(() => { nextTurn(); }, 500);
-            } else {
-                gameInfoElement.textContent = "Select a piece to move";
-            }
-            
-            updateUI();
-
-			// Broadcast state if connected
-			syncState();
-        }
-
-        // Check if a piece can move
-        function canPieceMove(color, pieceId) {
-            const piece = gameState.pieces[color][pieceId];
-            
-            // If piece is in home
-            if (piece.isHome) {
-                return gameState.diceValue === 6;
-            }
-            
-            // If piece is on the board
-            const newPosition = calculateNewPosition(color, piece.position, gameState.diceValue);
-            
-            // Check if new position is valid (not occupied by own piece)
-            if (newPosition !== -1) {
-                const occupyingPiece = getPieceAtPosition(newPosition);
-                return !occupyingPiece || occupyingPiece.color !== color;
-            }
-            
-            return false;
-        }
-
-		// Calculate new position for a piece
-        function calculateNewPosition(color, currentPosition, steps) {
-			// If piece is in home path
-			if (isInHomePath(color, currentPosition)) {
-				const pathIndex = homePaths[color].indexOf(currentPosition);
-				if (pathIndex + steps < homePaths[color].length) {
-					return homePaths[color][pathIndex + steps];
-				}
-				return -1; // Piece would finish
-			}
-
-			// Normal movement on the ring using the visual path mapping
-			const curIdx = ringPath.indexOf(currentPosition);
-			if (curIdx === -1) {
-				// If somehow not on ring yet (e.g., leaving home), place at start
-				const startPos = startPositions[color];
-				const startIdx = ringPath.indexOf(startPos);
-				const targetIdx = (startIdx + steps) % 52;
-				return ringPath[targetIdx];
-			}
-			const newRingIdx = (curIdx + steps) % 52;
-			let newPosition = ringPath[newRingIdx];
-
-			// Enter home path when landing on the ring entry for that color (the tile before start)
-			if (newPosition === homeEntryRing[color]) {
-				return homePaths[color][0];
-			}
-
-			return newPosition;
-        }
-
-		// Check if a position is in a player's home path
-        function isInHomePath(color, position) {
-			return homePaths[color].includes(position);
-        }
-
-        // Get piece at a specific position
-        function getPieceAtPosition(position) {
-            for (const color of players) {
-                for (const piece of gameState.pieces[color]) {
-                    if (piece.position === position && !piece.isHome && !piece.isFinished) {
-                        return { color, id: piece.id };
-                    }
-                }
-            }
-            return null;
-        }
-
-        // Select a piece to move
-        function selectPiece(color, pieceId) {
-			if (players[gameState.currentPlayer] !== color || !gameState.hasRolled) return;
-
-			// If connected: only allow local seat to move their color
-			if (player.color && player.color !== color) return;
-            
-            const piece = gameState.pieces[color][pieceId];
-            
-            if (!canPieceMove(color, pieceId)) return;
-            
-            // Deselect previous piece
-            if (gameState.selectedPiece) {
-                const prevPieceElement = document.querySelector(`.piece[data-color="${gameState.selectedPiece.color}"][data-id="${gameState.selectedPiece.id}"]`);
-                if (prevPieceElement) prevPieceElement.classList.remove('selected');
-            }
-            
-            // Select new piece
-            gameState.selectedPiece = { color, id: pieceId };
-            const pieceElement = document.querySelector(`.piece[data-color="${color}"][data-id="${pieceId}"]`);
-            pieceElement.classList.add('selected');
-            
-            // Move the piece
-            movePiece(color, pieceId);
-        }
-
-        // Move a piece
-        function movePiece(color, pieceId) {
-            const piece = gameState.pieces[color][pieceId];
-            const newPosition = calculateNewPosition(color, piece.position, gameState.diceValue);
-            
-            // If piece is in home and dice is 6
-            if (piece.isHome && gameState.diceValue === 6) {
-                piece.isHome = false;
-                piece.position = startPositions[color];
-            } 
-            // If piece is on the board
-            else if (!piece.isHome && newPosition !== -1) {
-                // Check if there's a piece at the new position
-                const occupyingPiece = getPieceAtPosition(newPosition);
-                if (occupyingPiece) {
-                    // Send the occupying piece back to its home
-                    gameState.pieces[occupyingPiece.color][occupyingPiece.id].position = -1;
-                    gameState.pieces[occupyingPiece.color][occupyingPiece.id].isHome = true;
-                    
-                    // Update UI for the captured piece
-                    updatePiecePosition(occupyingPiece.color, occupyingPiece.id);
-                }
-                
-                piece.position = newPosition;
-            }
-            // If piece would finish
-            else if (!piece.isHome && newPosition === -1) {
-                piece.isFinished = true;
-                gameInfoElement.textContent = `${playerNames[gameState.currentPlayer]} piece finished!`;
-            }
-            
-            // Update UI
-            updatePiecePosition(color, pieceId);
-            
-            // Deselect piece
-            if (gameState.selectedPiece) {
-                const pieceElement = document.querySelector(`.piece[data-color="${gameState.selectedPiece.color}"][data-id="${gameState.selectedPiece.id}"]`);
-                if (pieceElement) pieceElement.classList.remove('selected');
-                gameState.selectedPiece = null;
-            }
-            
-            // Check for extra turn (rolled a 6)
-            if (gameState.diceValue === 6 && !piece.isFinished) {
-                gameState.hasRolled = false;
-                gameInfoElement.textContent = "Rolled a 6! Roll again.";
-            } else {
-                nextTurn();
-            }
-            
-            updateUI();
-            
-            // Check for win condition
-            checkWinCondition();
-
-			// Broadcast state if connected
-			syncState();
-        }
-
-        // Update piece position on the board
-        function updatePiecePosition(color, pieceId) {
-            const piece = gameState.pieces[color][pieceId];
-            const pieceElement = document.querySelector(`.piece[data-color="${color}"][data-id="${pieceId}"]`);
-            
-            if (piece.isHome) {
-                const homeElement = document.getElementById(`${color}-home`);
-                const insideBoxes = homeElement.querySelectorAll('.insidebox');
-                const box = insideBoxes[pieceId];
-                const rect = box.getBoundingClientRect();
-                const boardRect = document.querySelector('.ludo').getBoundingClientRect();
-                
-                pieceElement.style.left = `${rect.left - boardRect.left + 15}px`;
-                pieceElement.style.top = `${rect.top - boardRect.top + 15}px`;
-            } else if (piece.isFinished) {
-                // Hide finished pieces
-                pieceElement.style.display = 'none';
-            } else {
-                const squareElement = document.querySelector(`.square[data-index="${piece.position}"]`);
-                if (squareElement) {
-                    const rect = squareElement.getBoundingClientRect();
-                    const boardRect = document.querySelector('.ludo').getBoundingClientRect();
-                    
-                    pieceElement.style.left = `${rect.left - boardRect.left + 9}px`;
-                    pieceElement.style.top = `${rect.top - boardRect.top + 9}px`;
-                }
-            }
-        }
-
-        // Move to next player's turn
-        function nextTurn() {
-			// advance to the next active color
-			let idx = gameState.currentPlayer;
-			for (let i = 0; i < 4; i++) {
-				idx = (idx + 1) % 4;
-				if (activeColors.has(players[idx])) break;
-			}
-			gameState.currentPlayer = idx;
-            gameState.diceValue = 0;
-            gameState.hasRolled = false;
-            diceElement.textContent = '0';
-            
-            updateUI();
-			// share the turn advance
-			syncState();
-        }
-
-        // Check if a player has won
-        function checkWinCondition() {
-            for (const color of players) {
-                if (gameState.pieces[color].every(piece => piece.isFinished)) {
-                    gameInfoElement.textContent = `${playerNames[players.indexOf(color)]} wins the game!`;
-                    rollButton.disabled = true;
-					syncState();
-                    return;
-                }
-            }
-        }
-
-        // Update UI based on game state
-        function updateUI() {
-            playerTurnElement.textContent = `${playerNames[gameState.currentPlayer]}'s Turn`;
-            playerTurnElement.className = `player-turn ${players[gameState.currentPlayer]}Font`;
-            
-            rollButton.disabled = gameState.hasRolled;
-        }
-
-		// -------- Networking helpers --------
-		function updateNetStatus(text) {
-			netStatusEl.textContent = text;
-		}
-
-		async function fetchRoomAndSetActiveColors(id) {
-			try {
-				const res = await fetch(`${API_BASE}/rooms/${id}`);
-				const data = await res.json();
-				if (!res.ok) throw new Error(data.error || 'Room not found');
-				const playersObj = data.room.players || {};
-				const nextActive = new Set();
-				['blue','red','yellow','green'].forEach(c => {
-					if (playersObj[c]) nextActive.add(c);
-				});
-				// if no seats taken, keep default local 4-color rotation
-				activeColors = nextActive.size > 0 ? nextActive : new Set(['blue','red','yellow','green']);
-				ensureCurrentPlayerActive();
-				return data;
-			} catch (e) {
-				// keep existing activeColors if fetch fails
-				return null;
-			}
-		}
-
-		function ensureCurrentPlayerActive() {
-			// If current color is not active, advance until we find one
-			if (!activeColors.has(getCurrentColor())) {
-				nextTurn();
-			}
-		}
-
-		async function createRoom() {
-			try {
-				const res = await fetch(`${API_BASE}/rooms`, { method: 'POST' });
-				const data = await res.json();
-				if (!res.ok) throw new Error(data.error || 'Failed to create room');
-				roomId = data.room.id;
-				wsUrl = data.wsUrl;
-				roomInputEl.value = roomId;
-				updateNetStatus(`Room ${roomId} created`);
-				await fetchRoomAndSetActiveColors(roomId);
-			} catch (e) {
-				updateNetStatus(`Error: ${e.message}`);
-			}
-		}
-
-		async function joinRoom() {
-			try {
-				const id = (roomInputEl.value || '').trim();
-				if (!id) return;
-				const res = await fetch(`${API_BASE}/rooms/${id}`);
-				const data = await res.json();
-				if (!res.ok) throw new Error(data.error || 'Room not found');
-				roomId = data.room.id;
-				wsUrl = data.wsUrl;
-				updateNetStatus(`Joined room ${roomId}. Pick a seat.`);
-				await fetchRoomAndSetActiveColors(roomId);
-			} catch (e) {
-				updateNetStatus(`Error: ${e.message}`);
-			}
-		}
-
-		async function takeSeat() {
-			try {
-				if (!roomId || !wsUrl) return;
-				const color = seatSelectEl.value;
-				if (!['blue','red','yellow','green'].includes(color)) {
-					updateNetStatus('Pick a valid seat color');
-					return;
-				}
-				const name = (nameInputEl.value || '').trim() || color;
-				const res = await fetch(`${API_BASE}/rooms/${roomId}/seat`, {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ name, color })
-				});
-				const data = await res.json();
-				if (!res.ok) throw new Error(data.error || 'Seat failed');
-				player = { color: data.player.color, token: data.player.token, name };
-				const fullWsUrl = data.wsUrl;
-				connectWs(fullWsUrl);
-				updateNetStatus(`Seated as ${player.color}. Connecting...`);
-				await fetchRoomAndSetActiveColors(roomId);
-			} catch (e) {
-				updateNetStatus(`Error: ${e.message}`);
-			}
-		}
-
-		function connectWs(url) {
-			try {
-				if (ws) {
-					try { ws.close(); } catch {}
-				}
-				ws = new WebSocket(url);
-				ws.onopen = () => {
-					updateNetStatus(`Connected (room ${roomId})`);
-					// Send initial snapshot so others get our state if we're first
-					syncState();
-				};
-				ws.onmessage = (evt) => {
-					try {
-						const msg = JSON.parse(evt.data);
-						handleWsMessage(msg);
-					} catch {}
-				};
-				ws.onclose = () => {
-					updateNetStatus('Disconnected');
-				};
-				ws.onerror = () => {
-					updateNetStatus('Connection error');
-				};
-			} catch (e) {
-				updateNetStatus(`WS error: ${e.message}`);
-			}
-		}
-
-		function serializeState() {
-			return {
-				currentPlayer: gameState.currentPlayer,
-				diceValue: gameState.diceValue,
-				hasRolled: gameState.hasRolled,
-				selectedPiece: null, // do not sync selection
-				pieces: {
-					blue: gameState.pieces.blue.map(p => ({ id: p.id, position: p.position, isHome: p.isHome, isFinished: p.isFinished })),
-					red: gameState.pieces.red.map(p => ({ id: p.id, position: p.position, isHome: p.isHome, isFinished: p.isFinished })),
-					yellow: gameState.pieces.yellow.map(p => ({ id: p.id, position: p.position, isHome: p.isHome, isFinished: p.isFinished })),
-					green: gameState.pieces.green.map(p => ({ id: p.id, position: p.position, isHome: p.isHome, isFinished: p.isFinished }))
-				}
-			};
-		}
-
-		function applyState(state) {
-			gameState.currentPlayer = state.currentPlayer;
-			gameState.diceValue = state.diceValue;
-			gameState.hasRolled = state.hasRolled;
-			diceElement.textContent = String(state.diceValue || 0);
-			['blue','red','yellow','green'].forEach(color => {
-				state.pieces[color].forEach((p, idx) => {
-					gameState.pieces[color][idx].position = p.position;
-					gameState.pieces[color][idx].isHome = p.isHome;
-					gameState.pieces[color][idx].isFinished = p.isFinished;
-					updatePiecePosition(color, idx);
-				});
-			});
-			updateUI();
-		}
-
-		function syncState() {
-			if (!ws || ws.readyState !== WebSocket.OPEN) return;
-			const payload = serializeState();
-			ws.send(JSON.stringify({ type: 'state', payload }));
-		}
-
-		function handleWsMessage(msg) {
-			if (msg.type === 'state' && msg.payload) {
-				applyState(msg.payload);
-			}
-			// Optionally handle presence / chat
-			if (msg.type === 'presence') {
-				// lightweight hint in status
-				updateNetStatus(`Room ${roomId}: ${msg.event} ${msg.color || ''}`.trim());
-				// Update active colors based on presence if color provided
-				if (msg.color) {
-					if (msg.event === 'join') activeColors.add(msg.color);
-					if (msg.event === 'leave') activeColors.delete(msg.color);
-					ensureCurrentPlayerActive();
-				}
-			}
-		}
-
-        // Start the game
-        initGame();
-    </script>
+    <script src="index.js"></script>
 </body>
 </html>

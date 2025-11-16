@@ -1,0 +1,218 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(32, 34, 56);
+    font-family: Arial, sans-serif;
+}
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ludo {
+    width: 750px;
+    height: 750px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: white;
+    position: relative;
+}
+
+.blue, .red, .yellow, .green {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*******color***************/
+.blue {
+    background-color: royalblue;
+}
+.red {
+    background-color: red;
+}
+.yellow {
+    background-color: yellow;
+}
+.green {
+    background-color: green;
+}
+
+/**************box inside*****************/
+.box {
+    background-color: white;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.box .insidebox {
+    width: 60px;
+    height: 60px;
+    margin: 20px;
+    border-radius: 50%;
+    position: relative;
+}
+
+/***********color***************/
+.blueFont {
+    color: royalblue;
+}
+.redFont {
+    color: red;
+}
+.yellowFont {
+    color: yellow;
+}
+.greenFont {
+    color: green;
+}
+
+.blueBackground {
+    background-color: royalblue;
+}
+.redBackground {
+    background-color: red;
+}
+.yellowBackground {
+    background-color: yellow;
+}
+.greenBackground {
+    background-color: green;
+}
+
+/***********square box****************/
+.square {
+    width: 48px;
+    height: 48px;
+    border: 1px solid black;
+    font-size: 30px;
+    text-align: center;
+    position: relative;
+}
+.squareContainer {
+    display: flex;
+}
+.row {
+    width: 750px;
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+}
+.row1 {
+    display: flex;
+}
+
+/******************ludoCenter***************/
+.ludoCenter {
+    font-size: 100px;
+    color: #ffd700;
+    position: absolute;
+    background-color: rgb(32, 34, 56);
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* Game pieces */
+.piece {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.piece.blue {
+    background-color: royalblue;
+}
+.piece.red {
+    background-color: red;
+}
+.piece.yellow {
+    background-color: yellow;
+}
+.piece.green {
+    background-color: green;
+}
+.piece.selected {
+    box-shadow: 0 0 10px 3px white;
+    transform: scale(1.2);
+}
+
+/* Dice and controls */
+.controls {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.dice-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.dice {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.roll-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+.roll-button:hover {
+    background-color: #45a049;
+}
+.roll-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+.player-turn {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Game info */
+.game-info {
+    color: white;
+    margin-top: 20px;
+    text-align: center;
+}
